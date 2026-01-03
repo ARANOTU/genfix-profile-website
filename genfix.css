@@ -3,6 +3,7 @@
 html,body { height:100%; font-family: system-ui, -apple-system, 'Segoe UI', Roboto,'Helvetica Neue', Arial; color: #222;background: #fff;}
 /*-------NAV--------*/
 .nav {position: sticky; top: 0;background: #ffffffcc; backdrop-filter: blur(6px); z-index: 1000;box-shadow: 0 1px 6px rgba(0,0,0,0.06);}
+.hamburger {display: none;font-size: 1.8rem;background: none;border: none;cursor: pointer;color: #0b5bd7;}
 .nav-inner { max-width: 1100px;margin:0 auto;padding: 14px 20px; display: flex;align-items: center;justify-content: space-between;gap: 20px;}
 .logo {font-weight: 700;color: #0b5bd7;font-size: 1.1rem;letter-spacing: 0.6px;}
 .logo .muted {color: #333;font-weight: 500;margin-left: 6px;}
@@ -17,8 +18,8 @@ html,body { height:100%; font-family: system-ui, -apple-system, 'Segoe UI', Robo
 /*-----HERO----*/
 .hero {padding: 36px 0; color: #fff;}
 .hero-home {background: url("Genfix.pics/hero1.jpg") center/contain repeat;}
-.hero-services {background: url("Genfix.pics/hero2.jpg") center/contain repeat;}
-.hero-process { background: url("Genfix.pics/hero3.jpg") center/contain repeat;}
+.hero-services {background: url("Genfix.pics/hero2.jpg") center/contain repeat;color: #ff6606;}
+.hero-process { background: url("Genfix.pics/hero3.jpg") center/cover no-repeat;}
 .hero-grid {max-width: 1100px;margin: 0 auto;display:grid;grid-template-columns: 1fr 420px;gap: 30px;align-items: center;padding: 40px 20px;}
 .hero-left h1 { font-size: 2rem;margin-bottom: 8px;}
 .hero-left .lead {font-size: 1.05rem;margin-bottom: 10px;opacity: 1.0;}
@@ -71,6 +72,24 @@ html,body { height:100%; font-family: system-ui, -apple-system, 'Segoe UI', Robo
 .btn-primary {background: #0b5bd7;color: #fff;padding: 12px 14px;border-radius: 8px;border: none;cursor: pointer;font-weight: 600;}
 .contact-info {background: #fff;padding: 18px;border-radius: 10px;box-shadow: 0 6px 18px rgba(0,0,0,0.06);}
 
+/* Fullscreen Status Overlay*/
+#status-overlay {position: fixed;display: none; inset: 0;/* top,right,bottom,left = 0 */ background: rgba(0, 0, 0, 0.65);align-items: center;justify-content: center;z-index: 9999;}
+
+/* Message Box*/
+.status-box {background: #fff; padding: 30px 40px;border-radius: 12px;text-align: center;max-width: 420px;width: 90%;box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);animation: scaleIn 0.3s ease;}
+#form-status {font-size: 1.5rem;font-weight: 700;}
+
+/* Success / Error style */
+#form-status.success {color: #1b7f3a;}
+#form-status.error {color: #b00020;}
+
+/* Animation */
+@keyframes scaleIn {
+    from {transform: scale(0.85);
+opacity: 0;}
+    to { transform: scale(1); opacity: 1;}
+
+}
 /* Footer */
 .footer {background: #111;color: #ddd;padding: 18px 0;margin-top: 28px;}
 .footer-grid {max-width: 1100px;margin: 0 auto;padding: 0 20px;display: flex;justify-content: space-between;align-items: center;}
@@ -81,7 +100,20 @@ html,body { height:100%; font-family: system-ui, -apple-system, 'Segoe UI', Robo
     .hero-right img {height: 260px;margin-top: 18px;}
     .about-grid {grid-template-columns: 1fr;}
     .contact-grid {grid-template-columns: 1fr;}
-    .nav-links {display: none;}
+    .process-grid {grid-template-columns: 1fr;}
+
+    /* Show Hamburger*/
+    .hamburger {display: block;z-index: 1001;}
+    .nav-links {position: fixed;  top: 0; right: 0;bottom: 0;opacity: 0.85; width: 35%;flex-direction: column;background: #fff; gap: 16px;
+        height: 100vh;/*Leave space for Footer */
+        padding: 30px 24px 24px;display: none;box-shadow: -8px 0 20px rgba(0, 0, 0, 0.4);font-size: 1.3rem;font-weight: 600;
+
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        
+    
+    }
+    .nav-links.show {display: flex;transform: translateX(0);}
     .nav-inner {justify-content: space-between;}
     
 }
@@ -93,10 +125,8 @@ html,body { height:100%; font-family: system-ui, -apple-system, 'Segoe UI', Robo
     .services-grid {grid-template-columns: 1fr;}
     .products-grid {grid-template-columns: repeat(2,1fr);}
     
+    
 }
-
-
-
 
 
 
